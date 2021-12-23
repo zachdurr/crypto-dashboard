@@ -14,6 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+Once the project is running you are able to select your primary and secondary currencies and see the exchange rate for those currencies as well as a list of news articles relating to crypto. Enjoy!
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
