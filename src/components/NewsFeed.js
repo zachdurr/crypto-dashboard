@@ -8,13 +8,9 @@ const NewsFeed = () => {
         const axios = require("axios").default;
 
         const options = {
-        method: 'GET',
-        url: 'https://crypto-news-live.p.rapidapi.com/news',
-        headers: {
-            'x-rapidapi-host': 'crypto-news-live.p.rapidapi.com',
-            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
+            method: 'GET',
+            url: 'http://localhost:8000/news'
         }
-        };
 
         axios.request(options).then((response) => {
             // console.log(response.data)
