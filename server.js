@@ -32,9 +32,9 @@ app.get('/news', (req, res) => {
 app.get('/exchange', (req, res) => {
     const toCurrency = req.query.to_currency
     const fromCurrency = req.query.from_currency
-    var axios = require("axios").default;
+    const axios = require("axios").default;
 
-    var options = {
+    const options = {
     method: 'GET',
     url: 'https://alpha-vantage.p.rapidapi.com/query',
     params: {from_currency: fromCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: toCurrency},
@@ -43,16 +43,6 @@ app.get('/exchange', (req, res) => {
         'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
     }
     }
-    
-    const options = {
-        method: 'GET',
-        url: 'https://alpha-vantage.p.rapidapi.com/query',
-        params: {from_currency: toCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: fromCurrency},
-        headers: {
-            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
-            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
-        }
-        }
 
         axios.request(options).then(response => {
            res.json(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
