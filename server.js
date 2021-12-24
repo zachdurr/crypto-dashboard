@@ -40,7 +40,7 @@ app.get('/exchange', (req, res) => {
     params: {from_currency: fromCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: toCurrency},
     headers: {
         'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
-        'x-rapidapi-key': 'b6b33d0bfamshd9b6b54f9d73d11p1ade29jsn63a671b0d04d'
+        'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
     }
     }
 
