@@ -6,10 +6,16 @@ const CurrencyConverter = () => {
     const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState('BTC')
     const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState('BTC')
     const [amount, setAmount] = useState(1)
-    const [exchangeRate, setExchangeRate] = useState(0)
     const [result, setResult] = useState(0)
-    const [primaryCurrencyExchanged, setPrimaryCurrencyExchanged] = useState('BTC')
-    const [secondaryCurrencyExchanged, setSecondaryCurrencyExchanged] = useState('BTC')
+    // const [exchangeRate, setExchangeRate] = useState(0)
+    // const [primaryCurrencyExchanged, setPrimaryCurrencyExchanged] = useState('BTC')
+    // const [secondaryCurrencyExchanged, setSecondaryCurrencyExchanged] = useState('BTC')
+
+    const [exchangedData, setExchangedData] = useState({
+        primaryCurrency: 'BTC',
+        secondaryCurrency: 'BTC',
+        exchangeRate: 0
+    })
 
     const convert = () => {
         const axios = require("axios").default;
@@ -21,10 +27,12 @@ const CurrencyConverter = () => {
         }
 
         axios.request(options).then(response => {
-            setExchangeRate(response.data)
             setResult(response.data * amount)
-            setPrimaryCurrencyExchanged(chosenPrimaryCurrency)
-            setSecondaryCurrencyExchanged(chosenSecondaryCurrency)
+            setExchangedData({
+                primaryCurrency: chosenPrimaryCurrency,
+                secondaryCurrency: chosenSecondaryCurrency,
+                exchangeRate: response.data
+            })
         }).catch(error => {
             console.error(error)
         })
@@ -85,9 +93,7 @@ const CurrencyConverter = () => {
         </div>
 
         <ExchangeRate 
-            exchangeRate={exchangeRate} 
-            chosenPrimaryCurrency={primaryCurrencyExchanged}
-            chosenSecondaryCurrency={secondaryCurrencyExchanged}   
+            exchangedData={exchangedData} 
         />
       </div>
     )
